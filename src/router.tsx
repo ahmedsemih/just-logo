@@ -1,7 +1,7 @@
 import { createRouter } from '@tanstack/react-router';
 import { setupRouterSsrQueryIntegration } from '@tanstack/react-router-ssr-query';
 
-import * as TanstackQuery from '@/components/providers/query-providers';
+import * as TanstackQuery from '@/components/providers/query-provider';
 
 import { routeTree } from './routeTree.gen';
 
