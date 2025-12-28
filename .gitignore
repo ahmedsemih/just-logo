@@ -11,3 +11,6 @@ count.txt
 .output
 .vinxi
 todos.json
+
+# Icons
+public/icons-db.json
