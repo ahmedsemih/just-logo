@@ -40,12 +40,12 @@ const BackgroundSettings = () => {
           name="borderRadius"
           value={backgroundSettings.borderRadius}
           label="Border Radius"
-          unit="%"
+          unit="px"
           onValueChange={(borderRadius) =>
             updateBackgroundSettings({ borderRadius })
           }
           min={0}
-          max={50}
+          max={256}
         />
         <SliderField
           name="borderWidth"

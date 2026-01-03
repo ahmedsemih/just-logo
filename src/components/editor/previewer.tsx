@@ -14,7 +14,7 @@ const Previewer = () => {
             className="absolute overflow-clip flex items-center justify-center"
             style={{
               background: backgroundSettings.background,
-              borderRadius: backgroundSettings.borderRadius + '%',
+              borderRadius: backgroundSettings.borderRadius + 'px',
               border: `${backgroundSettings.borderWidth}px solid ${backgroundSettings.borderColor}`,
               width: `calc(512px - ${backgroundSettings.margin}px)`,
               height: `calc(512px - ${backgroundSettings.margin}px)`,
