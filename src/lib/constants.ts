@@ -6,3 +6,5 @@ export const AVAILABLE_ICON_SETS = [
   'meteor-icons',
 ] as const;
 export type IconSet = (typeof AVAILABLE_ICON_SETS)[number];
+
+export const EXPORT_ZONE_ID = 'export-zone';

@@ -1,3 +1,4 @@
+import { EXPORT_ZONE_ID } from '@/lib/constants';
 import { useEditor } from '@/components/providers/editor-provider';
 
 const Previewer = () => {
@@ -7,7 +8,7 @@ const Previewer = () => {
     <div className="w-full h-full flex items-center justify-center">
       <div className="relative group border-2 border-foreground/20 hover:border-foreground/50 border-dotted transition-colors w-[516px] h-[516px]">
         <div
-          id="export-zone"
+          id={EXPORT_ZONE_ID}
           className="relative w-[512px] h-[512px] flex items-center justify-center"
         >
           <div
