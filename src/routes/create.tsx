@@ -22,7 +22,7 @@ function RouteComponent() {
           }}
         >
           <EditorHeader />
-          <div className="w-full h-full grid grid-cols-4 gap-4 p-4">
+          <div className="w-full h-full grid grid-cols-1 lg:grid-cols-4 lg:gap-x-4 gap-y-4 p-4">
             <div className="col-span-1">
               <IconPicker />
             </div>

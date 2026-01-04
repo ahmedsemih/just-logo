@@ -12,7 +12,7 @@ const SettingsPanel = () => {
             <TabsTrigger value="background">Background</TabsTrigger>
           </TabsList>
         </div>
-        <div className="h-[calc(100vh-200px)] overflow-y-auto custom-scrollbar p-4">
+        <div className="h-96 lg:h-[calc(100vh-200px)] overflow-y-auto custom-scrollbar p-4">
           <TabsContent value="icon">
             <IconSettings />
           </TabsContent>

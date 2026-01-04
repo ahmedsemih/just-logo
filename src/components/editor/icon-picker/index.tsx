@@ -11,7 +11,7 @@ const IconPicker = () => {
   const [filteredIcons, setFilteredIcons] = useState<IconItem[]>(icons);
 
   return (
-    <div className="flex flex-col h-[calc(100vh-112px)] border rounded-sm bg-card">
+    <div className="flex flex-col h-84 lg:h-[calc(100vh-112px)] border rounded-sm bg-card">
       <IconFilter icons={icons} setFilteredIcons={setFilteredIcons} />
       <IconGrid filteredIcons={filteredIcons} isLoading={isLoading} />
     </div>

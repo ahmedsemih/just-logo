@@ -3,8 +3,8 @@ import EditorActions from "./editor-actions";
 
 const EditorHeader = () => {
   return (
-    <div className="p-4 sticky top-0 w-full border-b bg-card flex items-center justify-between">
-      <a href="/" className="flex items-center gap-2">
+    <div className="p-4 sticky top-0 w-full z-99 border-b bg-card flex flex-wrap gap-2 items-center justify-center sm:justify-between">
+      <a href="/" className="flex items-center gap-2 w-full md:w-auto justify-center">
         <img
           src="/logo.svg"
           alt="Just Logo"
