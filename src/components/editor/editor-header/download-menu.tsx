@@ -44,7 +44,7 @@ const DownloadMenu = () => {
       <DropdownMenuTrigger>
         <Button className="w-32 text-lg font-app">Download</Button>
       </DropdownMenuTrigger>
-      <DropdownMenuContent className="w-fit">
+      <DropdownMenuContent className="w-fit z-50">
         <DropdownMenuItem
           className="text-md cursor-pointer font-app"
           onClick={handleExportPng}
