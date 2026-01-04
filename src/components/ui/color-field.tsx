@@ -33,7 +33,7 @@ const ColorField = ({
         hideOpacity
         hideControls
         style={{
-          rbgcpInput: { marginBottom: '4px' },
+          rbgcpInput: { marginBottom: '4px', fontFamily: 'var(--font-sans)' },
           body: { background: 'transparent' },
           rbgcpControlBtnSelected: {
             color: 'var(--foreground)',

@@ -5,14 +5,19 @@
 @import 'shadcn/tailwind.css';
 
 @import '@fontsource-variable/syne';
+@import '@fontsource-variable/inter';
 
 @custom-variant dark (&:is(.dark *));
 
 body {
   @apply m-0;
-  font-family: 'Syne Variable', sans-serif;
+  font-family: 'Inter Variable', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Syne Variable', sans-serif;
 }
 
 code {
@@ -128,7 +133,8 @@ code {
   --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
   --color-sidebar-border: var(--sidebar-border);
   --color-sidebar-ring: var(--sidebar-ring);
-  --font-sans: 'Syne Variable', sans-serif;
+  --font-app: 'Syne Variable', sans-serif;
+  --font-sans: 'Inter Variable', sans-serif;
   --radius-2xl: calc(var(--radius) + 8px);
   --radius-3xl: calc(var(--radius) + 12px);
   --radius-4xl: calc(var(--radius) + 16px);
@@ -180,5 +186,9 @@ code {
   }
   #rbgcp-gradient-controls-wrap svg * {
     stroke: var(--foreground) !important;
+  }
+
+  .create-page {
+    @apply font-app;
   }
 }

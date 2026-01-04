@@ -33,7 +33,7 @@ const SliderField = ({
           {label}
         </Label>
         <div>
-          <span className="text-lg">{value}</span>
+          <span className="text-lg font-sans">{value}</span>
           {unit && <span className="text-sm ml-1">{unit}</span>}
         </div>
       </div>

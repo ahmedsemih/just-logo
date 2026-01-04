@@ -30,7 +30,7 @@ const SvgIconButton = ({ icon }: { icon: IconItem }) => {
       <span className="text-xs truncate w-full text-center mt-1">
         {icon.set}
       </span>
-      <span className="text-[10px] truncate w-full text-center">
+      <span className="text-[10px] truncate w-full text-center font-sans">
         {icon.name}
       </span>
     </button>

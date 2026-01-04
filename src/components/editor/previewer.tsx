@@ -38,7 +38,7 @@ const Previewer = () => {
             />
           )}
         </div>
-        <span className="absolute -top-6 right-0 text-foreground/20 group-hover:text-foreground/80 transition-colors">
+        <span className="absolute -top-6 right-0 text-foreground/20 group-hover:text-foreground/80 transition-colors font-sans">
           512x512
         </span>
         <span className="absolute -top-6 left-0 text-foreground/20 group-hover:text-foreground/80 transition-colors">

@@ -113,7 +113,7 @@ const EditorHeader = () => {
 
   return (
     <div className="p-4 sticky top-0 w-full border-b bg-card flex items-center justify-between">
-      <div className="flex items-center gap-2">
+      <a href="/" className="flex items-center gap-2">
         <img
           src="/logo.svg"
           alt="Just Logo"
@@ -122,7 +122,7 @@ const EditorHeader = () => {
           className="w-8 h-8"
         />
         <h1 className="text-2xl font-bold">Just Logo</h1>
-      </div>
+      </a>
       <div className="flex items-center gap-2">
         <div>
           <ThemeToggle />
@@ -158,17 +158,17 @@ const EditorHeader = () => {
       </div>
       <DropdownMenu>
         <DropdownMenuTrigger>
-          <Button className="w-32 text-lg">Download</Button>
+          <Button className="w-32 text-lg font-app">Download</Button>
         </DropdownMenuTrigger>
         <DropdownMenuContent className="w-fit">
           <DropdownMenuItem
-            className="text-md cursor-pointer"
+            className="text-md cursor-pointer font-app"
             onClick={handleExportPng}
           >
             Download as PNG
           </DropdownMenuItem>
           <DropdownMenuItem
-            className="text-md cursor-pointer"
+            className="text-md cursor-pointer font-app"
             onClick={handleExportSvg}
           >
             Download as SVG
