@@ -1,7 +1,9 @@
 import Fuse from 'fuse.js';
-import { useEffect, useState } from 'react';
+import { useHotkeys } from 'react-hotkeys-hook';
+import { useEffect, useRef, useState } from 'react';
 
 import { cn } from '@/lib/utils';
+import { Kbd } from '@/components/ui/kbd';
 import { Button } from '@/components/ui/button';
 import { useDebounce } from '@/hooks/use-debounce';
 import { AVAILABLE_ICON_SETS } from '@/lib/constants';
@@ -13,9 +15,15 @@ type IconFilterProps = {
 };
 
 const IconFilter = ({ icons, setFilteredIcons }: IconFilterProps) => {
+  const iconFilterRef = useRef<HTMLInputElement>(null);
+
   const [search, setSearch] = useState('');
   const debouncedSearch = useDebounce(search, 500);
   const [selectedSet, setSelectedSet] = useState<string | null>(null);
+
+  useHotkeys('1', () => {
+    setTimeout(() => iconFilterRef.current?.select(), 100);
+  });
 
   useEffect(() => {
     let filteredIcons = icons.filter((icon) => {
@@ -40,12 +48,16 @@ const IconFilter = ({ icons, setFilteredIcons }: IconFilterProps) => {
 
   return (
     <div className="p-4 border-b flex flex-col gap-2">
-      <input
-        placeholder="Search icons..."
-        className="w-full p-2 border rounded"
-        value={search}
-        onChange={(e) => setSearch(e.target.value)}
-      />
+      <div className="relative flex items-center">
+        <input
+          ref={iconFilterRef}
+          placeholder="Search icons..."
+          className="w-full p-2 border rounded"
+          value={search}
+          onChange={(e) => setSearch(e.target.value)}
+        />
+        <Kbd className="absolute right-3">1</Kbd>
+      </div>
       <div className="flex gap-2 flex-wrap">
         {AVAILABLE_ICON_SETS.map((set) => (
           <Button

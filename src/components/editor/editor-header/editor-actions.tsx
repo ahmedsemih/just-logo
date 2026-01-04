@@ -4,7 +4,14 @@ import {
   Redo2Icon,
   Undo2Icon,
 } from 'lucide-react';
+import { useHotkeys } from 'react-hotkeys-hook';
 
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipTrigger,
+} from '@/components/ui/tooltip';
+import { Kbd } from '@/components/ui/kbd';
 import { useIcons } from '@/hooks/use-icons';
 import {
   DEFAULT_BACKGROUND_SETTINGS,
@@ -21,6 +28,17 @@ const EditorActions = () => {
   const { canRedo, canUndo, redo, undo } = useHistory();
   const { updateBackgroundSettings, updateIconSettings, resetSettings } =
     useEditor();
+
+  useHotkeys('mod+z', (e) => {
+    e.preventDefault();
+    handleUndo();
+  });
+  useHotkeys('mod+y', (e) => {
+    e.preventDefault();
+    handleRedo();
+  });
+  useHotkeys('r', () => handleRandomize());
+  useHotkeys('backspace, delete', () => resetSettings());
 
   const handleUndo = () => {
     const lastState = undo();
@@ -77,36 +95,67 @@ const EditorActions = () => {
 
   return (
     <div className="flex items-center gap-2">
-      <div>
-        <ThemeToggle />
+      <Tooltip>
+        <TooltipTrigger>
+          <ThemeToggle />
+        </TooltipTrigger>
+        <TooltipContent>
+          Toggle Theme <Kbd>T</Kbd>
+        </TooltipContent>
+      </Tooltip>
+      <Separator orientation="vertical" />
+      <div className="flex items-center gap-2">
+        <Tooltip>
+          <TooltipTrigger>
+            <Button
+              variant="secondary"
+              disabled={!canUndo}
+              onClick={handleUndo}
+            >
+              <Undo2Icon />
+            </Button>
+          </TooltipTrigger>
+          <TooltipContent>
+            Undo Last Action <Kbd>Ctrl + Z</Kbd>
+          </TooltipContent>
+        </Tooltip>
+        <Tooltip>
+          <TooltipTrigger>
+            <Button
+              variant="secondary"
+              disabled={!canRedo}
+              onClick={handleRedo}
+            >
+              <Redo2Icon />
+            </Button>
+          </TooltipTrigger>
+          <TooltipContent>
+            Redo Last Action <Kbd>Ctrl + Y</Kbd>
+          </TooltipContent>
+        </Tooltip>
       </div>
       <Separator orientation="vertical" />
       <div className="flex items-center gap-2">
-        <Button
-          variant="secondary"
-          title="Undo"
-          disabled={!canUndo}
-          onClick={handleUndo}
-        >
-          <Undo2Icon />
-        </Button>
-        <Button
-          variant="secondary"
-          title="Redo"
-          disabled={!canRedo}
-          onClick={handleRedo}
-        >
-          <Redo2Icon />
-        </Button>
-      </div>
-      <Separator orientation="vertical" />
-      <div className="flex items-center gap-2">
-        <Button variant="outline" title="Randomize" onClick={handleRandomize}>
-          <FlameIcon />
-        </Button>
-        <Button variant="outline" title="Clear" onClick={resetSettings}>
-          <BrushCleaningIcon />
-        </Button>
+        <Tooltip>
+          <TooltipTrigger>
+            <Button variant="outline" onClick={handleRandomize}>
+              <FlameIcon />
+            </Button>
+          </TooltipTrigger>
+          <TooltipContent>
+            Randomize <Kbd>R</Kbd>
+          </TooltipContent>
+        </Tooltip>
+        <Tooltip>
+          <TooltipTrigger>
+            <Button variant="outline" onClick={resetSettings}>
+              <BrushCleaningIcon />
+            </Button>
+          </TooltipTrigger>
+          <TooltipContent>
+            Clear <Kbd>Backspace</Kbd>
+          </TooltipContent>
+        </Tooltip>
       </div>
     </div>
   );

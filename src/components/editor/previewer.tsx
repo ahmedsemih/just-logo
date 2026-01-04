@@ -10,7 +10,7 @@ const Previewer = () => {
 
   return (
     <div className="w-full h-full flex items-center justify-center">
-      <div className="relative group border-2 border-foreground/20 bg-transparent hover:border-foreground/50 border-dotted transition-colors w-[260px] sm:w-[516px] h-[260px] sm:h-[516px] flex items-center justify-center bg-background">
+      <div className="relative group border-2 border-foreground/20 bg-transparent hover:border-foreground/50 border-dotted transition-colors w-[260px] sm:w-[516px] h-[260px] sm:h-[516px] flex items-center justify-center">
         <div
           ref={exportZoneRef}
           id={EXPORT_ZONE_ID}
