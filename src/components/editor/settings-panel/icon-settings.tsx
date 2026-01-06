@@ -40,6 +40,7 @@ const IconSettings = () => {
           min={0}
           max={4}
           step={0.1}
+          decimalPlaces={1}
         />
         <SliderField
           name="strokeOpacity"

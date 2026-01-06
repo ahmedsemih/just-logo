@@ -12,6 +12,7 @@ type SliderFieldProps = Omit<
   label: string;
   name: string;
   onValueChange: (value: number) => void;
+  decimalPlaces?: number;
 };
 
 const SliderField = ({
@@ -20,11 +21,14 @@ const SliderField = ({
   label,
   name,
   onValueChange,
+  decimalPlaces = 0,
   ...props
 }: SliderFieldProps) => {
   const handleChangeSlider = (sliderValue: number | readonly number[]) => {
     onValueChange(Array.isArray(sliderValue) ? sliderValue[0] : sliderValue);
   };
+
+  const displayValue = decimalPlaces > 0 ? value.toFixed(decimalPlaces) : value;
 
   return (
     <div className="flex flex-col gap-2">
@@ -33,7 +37,7 @@ const SliderField = ({
           {label}
         </Label>
         <div>
-          <span className="text-lg font-sans">{value}</span>
+          <span className="text-lg font-sans">{displayValue}</span>
           {unit && <span className="text-sm ml-1">{unit}</span>}
         </div>
       </div>
