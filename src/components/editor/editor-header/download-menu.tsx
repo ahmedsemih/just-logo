@@ -28,13 +28,15 @@ const DownloadMenu = () => {
   });
 
   const handleExportPng = async () => {
-    const node = document.getElementById(EXPORT_ZONE_ID);
-    if (node) {
-      const dataUrl = await toPng(node, {
-        width: 512,
-        height: 512,
-        pixelRatio: 2,
+    const zone = document.getElementById(EXPORT_ZONE_ID);
+    if (zone) {
+      const isMobile = zone.clientWidth < 512;
+      const dataUrl = await toPng(zone, {
+        width: isMobile ? 256 : 512,
+        height: isMobile ? 256 : 512,
+        pixelRatio: isMobile ? 2 : 1,
       });
+
       const link = document.createElement('a');
       link.download = 'logo.png';
       link.href = dataUrl;
@@ -43,12 +45,14 @@ const DownloadMenu = () => {
   };
 
   const handleExportSvg = async () => {
-    const node = document.getElementById(EXPORT_ZONE_ID);
-    if (node) {
-      const dataUrl = await toSvg(node, {
-        width: 512,
-        height: 512,
+    const zone = document.getElementById(EXPORT_ZONE_ID);
+    if (zone) {
+      const isMobile = zone.clientWidth < 512;
+      const dataUrl = await toSvg(zone, {
+        width: isMobile ? 256 : 512,
+        height: isMobile ? 256 : 512,
       });
+
       const link = document.createElement('a');
       link.download = 'logo.svg';
       link.href = dataUrl;
