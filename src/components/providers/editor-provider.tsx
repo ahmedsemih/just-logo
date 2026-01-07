@@ -19,7 +19,7 @@ const getDefaultIconSettings = (isLightMode: boolean): IconSettings => ({
 const getDefaultBackgroundSettings = (
   isLightMode: boolean,
 ): BackgroundSettings => ({
-  background: 'transparent',
+  background: isLightMode ? '#ffffff' : '#000000',
   margin: 0,
   borderRadius: 0,
   borderWidth: 0,
