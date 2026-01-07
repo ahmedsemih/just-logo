@@ -1,4 +1,5 @@
 import { useRef } from 'react';
+import { toast } from 'sonner';
 import { toPng, toSvg } from 'html-to-image';
 import { useHotkeys } from 'react-hotkeys-hook';
 
@@ -28,8 +29,10 @@ const DownloadMenu = () => {
   });
 
   const handleExportPng = async () => {
-    const zone = document.getElementById(EXPORT_ZONE_ID);
-    if (zone) {
+    try {
+      const zone = document.getElementById(EXPORT_ZONE_ID);
+      if (!zone) return;
+
       const isMobile = zone.clientWidth < 512;
       const dataUrl = await toPng(zone, {
         width: isMobile ? 256 : 512,
@@ -41,12 +44,17 @@ const DownloadMenu = () => {
       link.download = 'logo.png';
       link.href = dataUrl;
       link.click();
+    } catch (error) {
+      console.error('Error exporting PNG:', error);
+      toast.error('Failed to export PNG. Please try again.');
     }
   };
 
   const handleExportSvg = async () => {
-    const zone = document.getElementById(EXPORT_ZONE_ID);
-    if (zone) {
+    try {
+      const zone = document.getElementById(EXPORT_ZONE_ID);
+      if (!zone) return;
+
       const isMobile = zone.clientWidth < 512;
       const dataUrl = await toSvg(zone, {
         width: isMobile ? 256 : 512,
@@ -57,6 +65,9 @@ const DownloadMenu = () => {
       link.download = 'logo.svg';
       link.href = dataUrl;
       link.click();
+    } catch (error) {
+      console.error('Error exporting SVG:', error);
+      toast.error('Failed to export SVG. Please try again.');
     }
   };
 
