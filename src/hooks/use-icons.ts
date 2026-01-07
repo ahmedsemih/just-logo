@@ -14,5 +14,6 @@ export function useIcons() {
     },
     staleTime: Infinity,
     gcTime: Infinity,
+    retry: false,
   });
 }
