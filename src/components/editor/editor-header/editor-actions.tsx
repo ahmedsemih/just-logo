@@ -13,21 +13,22 @@ import {
 } from '@/components/ui/tooltip';
 import { Kbd } from '@/components/ui/kbd';
 import { useIcons } from '@/hooks/use-icons';
-import {
-  DEFAULT_BACKGROUND_SETTINGS,
-  DEFAULT_ICON_SETTINGS,
-  useEditor,
-} from '@/components/providers/editor-provider';
 import { Button } from '@/components/ui/button';
 import { Separator } from '@/components/ui/separator';
 import { ThemeToggle } from '@/components/ui/theme-toggle';
+import { useEditor } from '@/components/providers/editor-provider';
 import { useHistory } from '@/components/providers/history-provider';
 
 const EditorActions = () => {
   const { data: icons } = useIcons();
   const { canRedo, canUndo, redo, undo } = useHistory();
-  const { updateBackgroundSettings, updateIconSettings, resetSettings } =
-    useEditor();
+  const {
+    defaultIconSettings,
+    defaultBackgroundSettings,
+    updateBackgroundSettings,
+    updateIconSettings,
+    resetSettings,
+  } = useEditor();
 
   useHotkeys('mod+z', (e) => {
     e.preventDefault();
@@ -78,18 +79,18 @@ const EditorActions = () => {
       background,
       borderRadius: Math.floor(Math.random() * 100),
       borderWidth: Math.floor(Math.random() * 20),
-      margin: DEFAULT_BACKGROUND_SETTINGS.margin,
+      margin: defaultBackgroundSettings.margin,
     });
 
     updateIconSettings({
       icon: icons?.[Math.floor(Math.random() * icons.length)],
       strokeColor: primaryColor,
-      fillColor: DEFAULT_ICON_SETTINGS.fillColor,
+      fillColor: primaryColor,
       size: Math.floor(Math.random() * 400) + 50,
       rotate: Math.floor(Math.random() * 360) - 180,
       strokeWidth: parseFloat((Math.random() * 3).toFixed(1)),
-      strokeOpacity: DEFAULT_ICON_SETTINGS.strokeOpacity,
-      fillOpacity: DEFAULT_ICON_SETTINGS.fillOpacity,
+      strokeOpacity: defaultIconSettings.strokeOpacity,
+      fillOpacity: defaultIconSettings.fillOpacity,
     });
   };
 

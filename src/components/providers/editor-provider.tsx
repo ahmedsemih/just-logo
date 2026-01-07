@@ -1,66 +1,61 @@
-import { createContext, useState, useContext, ReactNode } from 'react';
+import { createContext, useContext, ReactNode } from 'react';
 
-export type IconItem = {
-  name: string;
-  set: string;
-  body: string;
-};
+import { STORAGE_KEYS } from '@/lib/constants';
+import { useLocalStorage } from '@/hooks/use-local-storage';
+import type { BackgroundSettings, IconSettings } from '@/types';
+import { useTheme } from '@/components/providers/theme-provider';
 
-export type IconSettings = {
-  icon: IconItem | null;
-  size: number;
-  rotate: number;
-  strokeColor: string;
-  strokeOpacity: number;
-  strokeWidth: number;
-  fillColor: string;
-  fillOpacity: number;
-};
+const getDefaultIconSettings = (isLightMode: boolean): IconSettings => ({
+  icon: null,
+  size: 128,
+  rotate: 0,
+  strokeColor: isLightMode ? '#000' : '#fff',
+  strokeWidth: 2,
+  strokeOpacity: 100,
+  fillOpacity: 0,
+  fillColor: isLightMode ? '#fff' : '#000',
+});
 
-export type BackgroundSettings = {
-  background: string;
-  margin: number;
-  borderRadius: number;
-  borderWidth: number;
-  borderColor: string;
-};
+const getDefaultBackgroundSettings = (
+  isLightMode: boolean,
+): BackgroundSettings => ({
+  background: 'transparent',
+  margin: 0,
+  borderRadius: 0,
+  borderWidth: 0,
+  borderColor: isLightMode ? '#000' : '#fff',
+});
 
-export type EditorContextType = {
+type EditorContextType = {
   iconSettings: IconSettings;
   updateIconSettings: (updates: Partial<IconSettings>) => void;
   backgroundSettings: BackgroundSettings;
   updateBackgroundSettings: (updates: Partial<BackgroundSettings>) => void;
   resetSettings: () => void;
-};
-
-export const DEFAULT_ICON_SETTINGS: IconSettings = {
-  icon: null,
-  size: 128,
-  rotate: 0,
-  strokeColor: '#fff',
-  strokeWidth: 2,
-  strokeOpacity: 100,
-  fillOpacity: 0,
-  fillColor: '#fff',
-};
-
-export const DEFAULT_BACKGROUND_SETTINGS: BackgroundSettings = {
-  background: 'transparent',
-  margin: 0,
-  borderRadius: 0,
-  borderWidth: 0,
-  borderColor: '#fff',
+  defaultIconSettings: IconSettings;
+  defaultBackgroundSettings: BackgroundSettings;
 };
 
 const EditorContext = createContext<EditorContextType | undefined>(undefined);
 
 export const EditorProvider = ({ children }: { children: ReactNode }) => {
-  const [iconSettings, setIconSettings] = useState<IconSettings>(
-    DEFAULT_ICON_SETTINGS,
+  const { theme } = useTheme();
+  const defaultIconSettings = getDefaultIconSettings(theme === 'light');
+  const defaultBackgroundSettings = getDefaultBackgroundSettings(
+    theme === 'light',
   );
 
+  const [iconSettings, setIconSettings] = useLocalStorage<IconSettings>(
+    STORAGE_KEYS.ICON,
+    defaultIconSettings,
+    500,
+  );
   const [backgroundSettings, setBackgroundSettings] =
-    useState<BackgroundSettings>(DEFAULT_BACKGROUND_SETTINGS);
+    useLocalStorage<BackgroundSettings>(
+      STORAGE_KEYS.BACKGROUND,
+      defaultBackgroundSettings,
+      500,
+    );
 
   const updateIconSettings = (updates: Partial<IconSettings>) => {
     setIconSettings((prev) => ({ ...prev, ...updates }));
@@ -71,8 +66,8 @@ export const EditorProvider = ({ children }: { children: ReactNode }) => {
   };
 
   const resetSettings = () => {
-    setIconSettings(DEFAULT_ICON_SETTINGS);
-    setBackgroundSettings(DEFAULT_BACKGROUND_SETTINGS);
+    setIconSettings(defaultIconSettings);
+    setBackgroundSettings(defaultBackgroundSettings);
   };
 
   return (
@@ -83,6 +78,8 @@ export const EditorProvider = ({ children }: { children: ReactNode }) => {
         backgroundSettings,
         updateBackgroundSettings,
         resetSettings,
+        defaultIconSettings,
+        defaultBackgroundSettings,
       }}
     >
       {children}
