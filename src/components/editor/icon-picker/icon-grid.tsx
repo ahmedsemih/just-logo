@@ -1,9 +1,9 @@
 import { useVirtualizer } from '@tanstack/react-virtual';
 
+import type { IconItem } from '@/types';
 import SvgIconButton from './svg-icon-button';
 import { Spinner } from '@/components/ui/spinner';
 import { useElementWidth } from '@/hooks/use-element-width';
-import { IconItem } from '@/components/providers/editor-provider';
 
 type IconGridProps = {
   filteredIcons: IconItem[];

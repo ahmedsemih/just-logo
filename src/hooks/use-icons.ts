@@ -1,6 +1,6 @@
 import { useQuery } from '@tanstack/react-query';
 
-import type { IconItem } from '@/components/providers/editor-provider';
+import type { IconItem } from '@/types';
 
 export function useIcons() {
   return useQuery({

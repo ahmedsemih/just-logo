@@ -1,5 +1,7 @@
 import { createContext, useContext, useEffect, useState } from 'react';
 
+import { STORAGE_KEYS } from '@/lib/constants';
+
 type Theme = 'dark' | 'light' | 'system';
 
 type ThemeProviderProps = {
@@ -12,14 +14,10 @@ type ThemeProviderState = {
   setTheme: (theme: Theme) => void;
 };
 
-const initialState: ThemeProviderState = {
+const ThemeProviderContext = createContext<ThemeProviderState>({
   theme: 'system',
   setTheme: () => null,
-};
-
-const STORAGE_KEY = 'theme';
-
-const ThemeProviderContext = createContext<ThemeProviderState>(initialState);
+});
 
 export function ThemeProvider({
   children,
@@ -28,7 +26,7 @@ export function ThemeProvider({
 }: ThemeProviderProps) {
   const [theme, setTheme] = useState<Theme>(() => {
     if (typeof window !== 'undefined') {
-      return (localStorage.getItem(STORAGE_KEY) as Theme) || defaultTheme;
+      return (localStorage.getItem(STORAGE_KEYS.THEME) as Theme) || defaultTheme;
     }
     return defaultTheme;
   });
@@ -57,7 +55,7 @@ export function ThemeProvider({
     theme,
     setTheme: (theme: Theme) => {
       if (typeof window !== 'undefined') {
-        localStorage.setItem(STORAGE_KEY, theme);
+        localStorage.setItem(STORAGE_KEYS.THEME, theme);
       }
       setTheme(theme);
     },

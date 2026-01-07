@@ -1,5 +1,6 @@
 import { cn } from '@/lib/utils';
-import { IconItem, useEditor } from '@/components/providers/editor-provider';
+import type { IconItem } from '@/types';
+import { useEditor } from '@/components/providers/editor-provider';
 
 const SvgIconButton = ({ icon }: { icon: IconItem }) => {
   const { iconSettings, updateIconSettings } = useEditor();

@@ -3,11 +3,11 @@ import { useHotkeys } from 'react-hotkeys-hook';
 import { useEffect, useRef, useState } from 'react';
 
 import { cn } from '@/lib/utils';
+import type { IconItem } from '@/types';
 import { Kbd } from '@/components/ui/kbd';
 import { Button } from '@/components/ui/button';
 import { useDebounce } from '@/hooks/use-debounce';
 import { AVAILABLE_ICON_SETS } from '@/lib/constants';
-import { IconItem } from '@/components/providers/editor-provider';
 
 type IconFilterProps = {
   icons: IconItem[];

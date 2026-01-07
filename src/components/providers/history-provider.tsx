@@ -6,12 +6,9 @@ import {
   useEffect,
 } from 'react';
 
-import {
-  type IconSettings,
-  type BackgroundSettings,
-  useEditor,
-} from '@/components/providers/editor-provider';
 import { useDebounce } from '@/hooks/use-debounce';
+import type { BackgroundSettings, IconSettings } from '@/types';
+import { useEditor } from '@/components/providers/editor-provider';
 
 type HistoryState = {
   iconSettings: IconSettings;
@@ -80,14 +77,14 @@ export const HistoryProvider = ({ children }: { children: ReactNode }) => {
   const undo = (): HistoryState | null => {
     if (!canUndo) return null;
 
-    setCurrentIndex(prev => prev - 1);
+    setCurrentIndex((prev) => prev - 1);
     return history[currentIndex - 1];
   };
 
   const redo = (): HistoryState | null => {
     if (!canRedo) return null;
 
-    setCurrentIndex(prev => prev + 1);
+    setCurrentIndex((prev) => prev + 1);
     return history[currentIndex + 1];
   };
 

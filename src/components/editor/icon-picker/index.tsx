@@ -3,8 +3,8 @@ import { useState } from 'react';
 import IconGrid from './icon-grid';
 import IconError from './icon-error';
 import IconFilter from './icon-filter';
+import { type IconItem } from '@/types';
 import { useIcons } from '@/hooks/use-icons';
-import { IconItem } from '@/components/providers/editor-provider';
 
 const IconPicker = () => {
   const { data: icons = [], isLoading, isError, refetch } = useIcons();

@@ -5,6 +5,11 @@ export const AVAILABLE_ICON_SETS = [
   'tabler',
   'meteor-icons',
 ] as const;
-export type IconSet = (typeof AVAILABLE_ICON_SETS)[number];
 
 export const EXPORT_ZONE_ID = 'export-zone';
+
+export const STORAGE_KEYS = {
+  ICON: 'just-logo-icon-state',
+  BACKGROUND: 'just-logo-background-state',
+  THEME: 'just-logo-theme'
+} as const;
