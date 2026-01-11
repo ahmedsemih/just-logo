@@ -32,6 +32,7 @@ The live version currently uses icons from five different icon libraries. When r
 - 💾 Export logos in **PNG** and **SVG** formats
 - 🔄 History management with **undo/redo** functionality
 - ⌨️ Keyboard shortcuts for faster editing
+- ⚙️ Preset configurations for quick logo generation
 
 ## 🛠️ Built With
 
