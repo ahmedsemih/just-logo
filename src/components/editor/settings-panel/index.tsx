@@ -1,6 +1,7 @@
 import { useRef, useState } from 'react';
 import { useHotkeys } from 'react-hotkeys-hook';
 
+import Presets from './presets';
 import { Kbd } from '@/components/ui/kbd';
 import IconSettings from './icon-settings';
 import BackgroundSettings from './background-settings';
@@ -8,7 +9,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 
 const SettingsPanel = () => {
   const tabWrapperRef = useRef<HTMLDivElement>(null);
-  const [activeTab, setActiveTab] = useState<'icon' | 'background'>('icon');
+  const [activeTab, setActiveTab] = useState<'icon' | 'background' | 'presets'>('icon');
 
   useHotkeys(
     'escape',
@@ -32,16 +33,26 @@ const SettingsPanel = () => {
     firstChild?.focus();
   });
 
+  useHotkeys('4', () => {
+    setActiveTab('presets');
+    tabWrapperRef.current?.scrollTo({ top: 0, behavior: 'smooth' });
+    const firstChild = tabWrapperRef.current?.firstChild as HTMLElement;
+    firstChild?.focus();
+  });
+
   return (
     <div className="border rounded-sm bg-card py-4">
       <Tabs value={activeTab} onValueChange={setActiveTab}>
-        <div className="w-full px-4 pb-4 border-b">
-          <TabsList className="w-full">
+        <div className="w-full px-4 pb-4 border-b overflow-x-auto overflow-y-hidden">
+          <TabsList className="w-full min-w-75">
             <TabsTrigger value="icon">
               Icon <Kbd>2</Kbd>
             </TabsTrigger>
             <TabsTrigger value="background">
               Background <Kbd>3</Kbd>
+            </TabsTrigger>
+            <TabsTrigger value="presets">
+              Presets <Kbd>4</Kbd>
             </TabsTrigger>
           </TabsList>
         </div>
@@ -54,6 +65,9 @@ const SettingsPanel = () => {
           </TabsContent>
           <TabsContent value="background">
             <BackgroundSettings />
+          </TabsContent>
+          <TabsContent value="presets">
+            <Presets />
           </TabsContent>
         </div>
       </Tabs>
