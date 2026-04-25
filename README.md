@@ -6,7 +6,7 @@
 
 <h3>A Multi-Source Logo Generator</h3>
 
-[Website](https://just-logo.vercel.app)
+[Website](https://just-logo.ahmedsemih.com/)
 
 ![Example](public/examples/example.png)
 
